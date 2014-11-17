@@ -1,0 +1,16 @@
+All properties in <%= @area.postcode %>
+
+<table border="1" style="width:100%">
+  <tr>
+    <td><strong>Rent per month</strong></td>
+    <td><strong>Initial cost of buying the property</strong></td>
+    <td><strong>Net yield</strong></td>
+  </tr>
+  <% @properties.each do |property| %>
+  <tr data-link="<%= new_area_path %>">
+    <td>£<%= property.rent %></td>
+    <td>£<%= property.investment %></td>    
+    <td><%= property.net_yield %>%</td>
+  </tr>
+  <% end %>
+</table>

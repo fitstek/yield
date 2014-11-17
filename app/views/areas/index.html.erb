@@ -1,0 +1,26 @@
+<div class="container">
+<% if @areas.any? %>
+  <% @areas.each do |area| %>
+    <h3><%= link_to area.postcode, area_path(area) %></h3>
+      <table border="1" style="width:100%" class: "table">
+        <tr>
+          <td><strong>Rent per month</strong></td>
+          <td><strong>Initial cost of buying the property</strong></td>
+          <td><strong>Net yield</strong></td>
+        </tr>
+        <% area.properties.each do |property| %>
+        <tr data-link="<%= new_area_path %>">
+          <td>£<%= property.rent %></td>
+          <td>£<%= property.investment %></td>    
+          <td><%= property.net_yield %>%</td>
+        </tr>
+        <% end %>
+      </table>
+  <% end %>
+<% else %>
+  <p>No Listings yet</p>
+<% end %>
+</div>
+<div class="container">
+<%= link_to 'New property?', new_area_path, class: "btn btn-primary btn-sm" %>
+</div>
