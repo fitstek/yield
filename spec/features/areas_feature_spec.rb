@@ -28,7 +28,7 @@ describe 'As a user who is not logged in' do
 end
 
 require 'rails_helper'
-describe 'As a user' do 
+describe 'As a logged in user' do 
 
   def login_and_fill_form
     fits = User.create(email: 'f@f.com', password: '12345678', password_confirmation: '12345678')
@@ -65,6 +65,34 @@ describe 'As a user' do
       expect(page).to have_content '£800'
       expect(page).to have_content '£100000'
       expect(page).to have_content '9.6%'
+    end    
+  end
+  context 'when the rent and investment are not given' do
+    before do
+    fits = User.create(email: 'f@f.com', password: '12345678', password_confirmation: '12345678')
+    login_as fits
+    visit root_path
+    click_link('New property?')
+    fill_in('Postcode', :with => 'NW10 6RB')
+    click_button('Create property')
+    end
+    it 'it shows a message saying what the error is' do 
+      expect(page).to have_content "Validation failed: Rent can't be blank, Rent is not a number, Investment can't be blank, Investment is not a number"
+    end    
+  end
+  context 'when the postcode is not from the UK' do
+    before do
+    fits = User.create(email: 'f@f.com', password: '12345678', password_confirmation: '12345678')
+    login_as fits
+    visit root_path
+    click_link('New property?')
+    fill_in('Postcode', :with => 'Q3 7rB')
+    fill_in('area_property_rent', :with => 800)
+    fill_in('area_landlord_investment', :with => 100000)
+    click_button('Create property')
+    end
+    it 'it shows a message saying what the error is' do 
+      expect(page).to have_content "You cannot call create unless the parent is saved"
     end    
   end
 end

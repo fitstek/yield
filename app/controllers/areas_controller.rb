@@ -14,11 +14,16 @@ class AreasController < ApplicationController
   end
 
   def create
-    @area = Area.find_or_create_by(postcode: area_params["postcode"].upcase.gsub(/\s+/,""))
-    @property = @area.properties.create(rent: area_params["property_rent"], investment: area_params["landlord_investment"])
-    @property.user = current_user
-    @property.save
-    redirect_to root_path
+    begin
+      @area = Area.find_or_create_by(postcode: area_params["postcode"].upcase.gsub(/\s+/,""))
+      @property = @area.properties.create!(rent: area_params["property_rent"], investment: area_params["landlord_investment"])
+      @property.user = current_user
+      @property.save
+      redirect_to root_path
+    rescue Exception => e
+      flash[:notice] = e.message
+      redirect_to root_path
+    end
   end
 
   private

@@ -10,4 +10,8 @@ RSpec.describe Property, :type => :model do
   it 'rent and initial investment must be supplied always' do
     expect(Property.create(rent: nil, investment: nil).valid?).to eq false
   end
+
+  it 'validates that rent and initial investment are positive float numbers' do
+    expect(Property.create(rent: -1, investment: 0).valid?).to eq false
+  end
 end
