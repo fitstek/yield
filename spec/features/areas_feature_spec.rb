@@ -77,7 +77,7 @@ describe 'As a logged in user' do
     click_button('Create property')
     end
     it 'it shows a message saying what the error is' do 
-      expect(page).to have_content "Validation failed: Rent can't be blank, Rent is not a number, Investment can't be blank, Investment is not a number"
+      expect(page).to have_content "Please check to make sure that you have provided a valid rent or investment"
     end    
   end
   context 'when the postcode is not from the UK' do
@@ -92,7 +92,7 @@ describe 'As a logged in user' do
     click_button('Create property')
     end
     it 'it shows a message saying what the error is' do 
-      expect(page).to have_content "You cannot call create unless the parent is saved"
+      expect(page).to have_content "Please check to make sure that you have provided a valid post code"
     end    
   end
 end

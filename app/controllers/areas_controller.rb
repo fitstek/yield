@@ -20,9 +20,12 @@ class AreasController < ApplicationController
       @property.user = current_user
       @property.save
       redirect_to root_path
-    rescue Exception => e
-      flash[:notice] = e.message
-      redirect_to root_path
+    rescue ActiveRecord::RecordNotSaved => e
+      flash[:notice] = "Please check to make sure that you have provided a valid post code"
+      redirect_to new_area_path
+    rescue ActiveRecord::RecordInvalid => e
+      flash[:notice] = "Please check to make sure that you have provided a valid rent or investment"
+      redirect_to new_area_path
     end
   end
 
