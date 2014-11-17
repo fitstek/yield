@@ -1,13 +1,13 @@
 <%= form_for @area, html: { multipart: true } do |f| %>
 
   <%= f.label :postcode %>
-  <%= f.text_field :postcode, placeholder: "Enter a postcode" %>
+  <%= f.text_field :postcode, required: true, placeholder: "Enter a postcode" %>
 
   <%= f.label :property_rent, 'Current Rent per month' %>
-  <%= f.text_field :property_rent %>
+  <%= f.text_field :property_rent, required: true %>
 
   <%= f.label :landlord_investment, 'Initial cost of buying the property' %>
-  <%= f.text_field :landlord_investment %>
+  <%= f.text_field :landlord_investment, required: true %>
   
   <%= f.submit 'Create property' %>
 <% end %>
