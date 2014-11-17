@@ -1,16 +1,18 @@
-<div class="row">
-  <div class="col-md-12"><h4>All properties in <%= @area.postcode %></h4></div>
-</div>
-<div class="row">
-  <div class="col-md-4">Rent per month</div>
-  <div class="col-md-4">Initial cost of buying the property</div>
-  <div class="col-md-4">Net yield</div>
-</div>
-<% @properties.each do |property| %>
+<div class="show-container">
   <div class="row">
-    <div class="col-md-4">£<%= property.rent %></div>
-    <div class="col-md-4">£<%= property.investment %></div>
-    <div class="col-md-4"><%= property.net_yield %>%</div>
+    <div class="col-md-12"><h4>All properties in <%= @area.postcode %></h4></div>
   </div>
-<% end %>
+  <div class="row">
+    <div class="col-md-4">Rent per month</div>
+    <div class="col-md-4">Initial cost of buying the property</div>
+    <div class="col-md-4">Net yield</div>
+  </div>
+  <% @properties.each do |property| %>
+    <div class="row">
+      <div class="col-md-4">£<%= property.rent %></div>
+      <div class="col-md-4">£<%= property.investment %></div>
+      <div class="col-md-4"><%= property.net_yield %>%</div>
+    </div>
+  <% end %>
+</div>
 
