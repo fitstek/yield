@@ -10,4 +10,8 @@ RSpec.describe Area, :type => :model do
   it 'can add investment to the investment column' do
     expect(area.landlord_investment=(10000)).to eq Property.first.investment
   end
+
+  it 'postcode must be supplied always' do
+    expect(Area.create(postcode: nil).valid?).to eq false
+  end
 end
