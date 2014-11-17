@@ -20,20 +20,3 @@ class Area < ActiveRecord::Base
     end
   end
 end
-
-
-__END__
-
-  def discount_cannot_be_greater_than_total_value
-    if discount > total_value
-      errors.add(:discount, "can't be greater than total value")
-    end
-  end
-
-   def base_coordinates
-    begin
-      uri = URI.parse("http://mapit.mysociety.org/postcode/#{postcode}")
-      http = Net::HTTP.new(uri.host, uri.port)
-      request = Net::HTTP::Get.new(uri.request_uri)
-      response = http.request(request)
-      unless JSON.parse(response.body)["code"] == 40
