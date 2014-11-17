@@ -2,7 +2,7 @@
 <% if @areas.any? %>
   <% @areas.each do |area| %>
     <div class="row">
-      <div class="col-md-12"><%= link_to area.postcode, area_path(area) %></div>
+      <div class="col-md-12"><h4><%= link_to area.postcode, area_path(area) %></h4></div>
     </div>
     <div class="row">
       <div class="col-md-4">Rent per month</div>
