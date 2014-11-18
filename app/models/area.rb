@@ -8,7 +8,7 @@ class Area < ActiveRecord::Base
 
   def valid_postcode
     begin
-      uri = URI.parse("http://mapit.mysociety.org/postcode/#{postcode || 0}")
+      uri = URI.parse("http://mapit.mysociety.org/postcode/#{postcode}")
       http = Net::HTTP.new(uri.host, uri.port)
       request = Net::HTTP::Get.new(uri.request_uri)
       response = http.request(request)
